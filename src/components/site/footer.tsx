@@ -1,9 +1,8 @@
 import Link from "next/link"
-import { AtSign, Briefcase, Camera, Globe, Mail } from "lucide-react"
+import { Camera, Globe, Mail } from "lucide-react"
 
 const socials = [
   { href: "https://instagram.com", label: "Instagram", icon: Camera },
-  { href: "https://linkedin.com", label: "LinkedIn", icon: Briefcase },
   { href: "https://behance.net", label: "Behance", icon: Globe },
   { href: "mailto:ola@pascoaljorge.com.br", label: "E-mail", icon: Mail },
 ]

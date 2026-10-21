@@ -9,9 +9,6 @@ import { Button } from "@/components/ui/button"
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/work", label: "Projetos" },
-  { href: "/about", label: "Sobre" },
-  { href: "/contact", label: "Contato" },
 ]
 
 export function Navbar() {
@@ -44,9 +41,6 @@ export function Navbar() {
               </Link>
             </li>
           ))}
-          <li className="ml-2">
-            <Button nativeButton={false} render={<Link href="/contact" />}>Vamos conversar</Button>
-          </li>
         </ul>
 
         <Button
