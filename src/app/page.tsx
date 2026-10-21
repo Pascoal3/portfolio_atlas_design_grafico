@@ -8,6 +8,7 @@ import {
   Share2,
 } from "lucide-react"
 import WavingPortfolioLanding from "@/components/ui/waving-portfolio-landing"
+import InversionCircleScrollAnimation from "@/components/ui/inversion-circle-scroll-animation"
 import { ProjectCard } from "@/components/site/project-card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -64,6 +65,8 @@ export default function Home() {
           title="Portfólio"
         />
       </section>
+
+      <InversionCircleScrollAnimation />
 
       <section
         aria-labelledby="projetos-destaque"
