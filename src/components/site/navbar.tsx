@@ -45,7 +45,7 @@ export function Navbar() {
             </li>
           ))}
           <li className="ml-2">
-            <Button render={<Link href="/contact" />}>Vamos conversar</Button>
+            <Button nativeButton={false} render={<Link href="/contact" />}>Vamos conversar</Button>
           </li>
         </ul>
 
