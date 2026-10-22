@@ -1,5 +1,6 @@
 import WavingPortfolioLanding from "@/components/ui/waving-portfolio-landing"
 import InversionCircleScrollAnimation from "@/components/ui/inversion-circle-scroll-animation"
+import { ProjectsCoverflowSection } from "@/components/sections/projects-coverflow"
 
 export default function Home() {
   return (
@@ -15,6 +16,8 @@ export default function Home() {
       </section>
 
       <InversionCircleScrollAnimation />
+
+      <ProjectsCoverflowSection />
     </>
   )
 }
