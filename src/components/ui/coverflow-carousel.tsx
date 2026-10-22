@@ -36,6 +36,10 @@ export interface CoverflowCarouselProps {
   showCaption?: boolean;
   showPagination?: boolean;
   showNavigation?: boolean;
+  /** Avança automaticamente para o próximo slide. */
+  autoPlay?: boolean;
+  /** Intervalo entre avanços, em ms. */
+  autoPlayInterval?: number;
   /** Names the carousel for assistive tech. */
   label?: string;
   className?: string;
@@ -55,6 +59,8 @@ export function CoverflowCarousel({
   showCaption = false,
   showPagination = false,
   showNavigation = false,
+  autoPlay = false,
+  autoPlayInterval = 5000,
   label = "Cover carousel",
   className,
   cardClassName,
@@ -79,6 +85,7 @@ export function CoverflowCarousel({
   } | null>(null);
 
   const [selected, setSelected] = React.useState(0);
+  const [paused, setPaused] = React.useState(false);
 
   /** Nearest whole card, folded back into 0..count-1. */
   const indexAt = React.useCallback(
@@ -171,6 +178,16 @@ export function CoverflowCarousel({
     [clamp, settle],
   );
 
+  // Autoplay: avança um card por intervalo, pausado em hover/drag.
+  React.useEffect(() => {
+    if (!autoPlay || paused) return;
+    const id = window.setInterval(() => {
+      if (dragRef.current) return; // não avança no meio de um drag
+      nudge(1); // próximo card (cards deslizam para a esquerda)
+    }, autoPlayInterval);
+    return () => window.clearInterval(id);
+  }, [autoPlay, autoPlayInterval, paused, nudge, selected]);
+
   const onPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
     if (rafRef.current !== null) {
       cancelAnimationFrame(rafRef.current);
@@ -259,6 +276,10 @@ export function CoverflowCarousel({
           onPointerMove={onPointerMove}
           onPointerUp={endDrag}
           onPointerCancel={endDrag}
+          onPointerEnter={() => setPaused(true)}
+          onPointerLeave={() => setPaused(false)}
+          onFocus={() => setPaused(true)}
+          onBlur={() => setPaused(false)}
           onKeyDown={(event) => {
             if (event.key === "ArrowLeft") {
               event.preventDefault();

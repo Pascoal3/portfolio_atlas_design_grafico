@@ -27,6 +27,8 @@ export function ProjectsCoverflowSection() {
         <CoverflowCarousel
           slides={slides}
           showCaption
+          autoPlay
+          autoPlayInterval={5000}
           label="Carrossel de projetos"
         />
       </div>
