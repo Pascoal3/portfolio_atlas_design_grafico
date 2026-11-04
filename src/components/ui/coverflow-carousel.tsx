@@ -14,6 +14,8 @@ export interface CoverflowSlide {
   title?: string;
   subtitle?: string;
   meta?: { label: string; value: string }[];
+  /** Link do projeto (botão do hover). */
+  href?: string;
 }
 
 export interface CoverflowCarouselProps {
@@ -44,6 +46,8 @@ export interface CoverflowCarouselProps {
   label?: string;
   className?: string;
   cardClassName?: string;
+  /** Texto do botão exibido no hover do card. */
+  ctaLabel?: string;
 }
 
 export function CoverflowCarousel({
@@ -60,10 +64,11 @@ export function CoverflowCarousel({
   showPagination = false,
   showNavigation = false,
   autoPlay = false,
-  autoPlayInterval = 5000,
+  autoPlayInterval = 1000,
   label = "Cover carousel",
   className,
   cardClassName,
+  ctaLabel = "Ver projeto",
 }: CoverflowCarouselProps) {
   const count = slides.length;
 
@@ -83,6 +88,8 @@ export function CoverflowCarousel({
     v: number;
     t: number;
   } | null>(null);
+
+  const suppressClickRef = React.useRef(false);
 
   const [selected, setSelected] = React.useState(0);
   const [paused, setPaused] = React.useState(false);
@@ -226,6 +233,14 @@ export function CoverflowCarousel({
   const endDrag = (event: React.PointerEvent<HTMLDivElement>) => {
     const drag = dragRef.current;
     if (!drag || drag.id !== event.pointerId) return;
+    // Guard against click after drag
+    const moved = Math.abs(event.clientX - drag.x);
+    if (moved > 6) {
+      suppressClickRef.current = true;
+      window.setTimeout(() => {
+        suppressClickRef.current = false;
+      }, 0);
+    }
     dragRef.current = null;
     // Let a flick carry, but never more than two cards.
     const carried = Math.max(-2, Math.min(2, drag.v * 0.18));
@@ -314,7 +329,7 @@ export function CoverflowCarousel({
                 aria-roledescription="slide"
                 aria-label={`${index + 1} of ${count}`}
                 className={cn(
-                  "absolute left-1/2 top-0 aspect-square overflow-hidden rounded-2xl bg-muted shadow-xl will-change-transform",
+                  "absolute left-1/2 top-0 aspect-square overflow-hidden rounded-2xl bg-muted shadow-xl will-change-transform group",
                   cardClassName,
                 )}
                 style={{ width: "var(--cf-card)" }}
@@ -326,6 +341,22 @@ export function CoverflowCarousel({
                   draggable={false}
                   className="h-full w-full select-none object-cover"
                 />
+                {slide.href && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition duration-200 group-hover:bg-black/35 group-hover:opacity-100 group-focus-within:bg-black/35 group-focus-within:opacity-100">
+                    <a
+                      href={slide.href}
+                      onClick={(event) => {
+                        if (suppressClickRef.current) {
+                          event.preventDefault();
+                          return;
+                        }
+                      }}
+                      className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-neutral-900 shadow-lg transition hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                    >
+                      {ctaLabel}
+                    </a>
+                  </div>
+                )}
               </div>
             ))}
           </div>

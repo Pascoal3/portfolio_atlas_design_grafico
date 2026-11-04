@@ -9,6 +9,7 @@ export function ProjectsCoverflowSection() {
     alt: `Capa do projeto ${p.title}`,
     title: p.title,
     subtitle: p.subtitle,
+    href: p.href,
     meta: [
       { label: "Ano", value: p.year },
       { label: "Ferramentas", value: p.tools },
@@ -30,6 +31,7 @@ export function ProjectsCoverflowSection() {
           autoPlay
           autoPlayInterval={5000}
           label="Carrossel de projetos"
+          ctaLabel="Ver projeto"
         />
       </div>
     </section>
