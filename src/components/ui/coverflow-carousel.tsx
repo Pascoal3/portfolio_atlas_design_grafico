@@ -48,6 +48,8 @@ export interface CoverflowCarouselProps {
   cardClassName?: string;
   /** Texto do botão exibido no hover do card. */
   ctaLabel?: string;
+  /** Abre o modal do projeto pelo índice do slide. */
+  onOpenProject?: (index: number) => void;
 }
 
 export function CoverflowCarousel({
@@ -69,6 +71,7 @@ export function CoverflowCarousel({
   className,
   cardClassName,
   ctaLabel = "Ver projeto",
+  onOpenProject,
 }: CoverflowCarouselProps) {
   const count = slides.length;
 
@@ -341,20 +344,33 @@ export function CoverflowCarousel({
                   draggable={false}
                   className="h-full w-full select-none object-cover"
                 />
-                {slide.href && (
+                {(slide.href || onOpenProject) && (
                   <div className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition duration-200 group-hover:bg-black/35 group-hover:opacity-100 group-focus-within:bg-black/35 group-focus-within:opacity-100">
-                    <a
-                      href={slide.href}
-                      onClick={(event) => {
-                        if (suppressClickRef.current) {
-                          event.preventDefault();
-                          return;
-                        }
-                      }}
-                      className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-neutral-900 shadow-lg transition hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                    >
-                      {ctaLabel}
-                    </a>
+                    {onOpenProject ? (
+                      <button
+                        type="button"
+                        onClick={(event) => {
+                          if (suppressClickRef.current) return;
+                          onOpenProject(index);
+                        }}
+                        className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-neutral-900 shadow-lg transition hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                      >
+                        {ctaLabel}
+                      </button>
+                    ) : (
+                      <a
+                        href={slide.href!}
+                        onClick={(event) => {
+                          if (suppressClickRef.current) {
+                            event.preventDefault();
+                            return;
+                          }
+                        }}
+                        className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-neutral-900 shadow-lg transition hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                      >
+                        {ctaLabel}
+                      </a>
+                    )}
                   </div>
                 )}
               </div>

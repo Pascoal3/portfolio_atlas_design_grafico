@@ -1,3 +1,4 @@
+// EDITE AQUI: description/role/deliverables/results por projeto
 export interface Project {
   id: string;
   title: string;
@@ -5,7 +6,13 @@ export interface Project {
   year: string;
   tools: string;
   cover: string;
-  href: string;
+  description: string;
+  client?: string;
+  role: string[];
+  deliverables: string[];
+  results?: string;
+  gallery: string[];
+  pdf: string | null;
 }
 
 export const projects: Project[] = [
@@ -16,7 +23,13 @@ export const projects: Project[] = [
     year: "2025",
     tools: "Ai / Ps / Figma",
     cover: "/images/projects/identidade_visual_amanay.png",
-    href: "#",
+    description: "Criação de identidade visual completa para a marca de cosméticos naturais Amanay, inspirada na biodiversidade amazônica. O projeto contemplou naming, logotipo, paleta de cores extraída da flora local, tipografia e sistema gráfico para embalagens e digital.",
+    client: "Amanay Cosméticos",
+    role: ["Branding", "Design de logótipo", "Sistema visual", "Direção de arte"],
+    deliverables: ["Logótipo principal e variações", "Manual de identidade visual", "Paleta de cores e tipografia", "Mockups de embalagens", "Templates para redes sociais"],
+    results: "Identidade aplicada em toda a linha de produtos e canais digitais da marca.",
+    gallery: [],
+    pdf: null,
   },
   {
     id: "identidade-visual-docinhos-ceu",
@@ -25,7 +38,13 @@ export const projects: Project[] = [
     year: "2025",
     tools: "Ai / Ps / Id",
     cover: "/images/projects/identidade_visual_docinhos_ceu.png",
-    href: "#",
+    description: "Desenvolvimento de identidade visual para confeitaria artesanal, transmitindo delicadeza e acolhimento através de ilustrações autorais, tipografia manuscrita e paleta em tons pastel. Aplicada do ponto de venda às embalagens.",
+    client: "Docinhos do Céu",
+    role: ["Branding", "Ilustração", "Design de embalagem", "Design editorial"],
+    deliverables: ["Logótipo e sub-marca", "Ilustrações autorais", "Manual de marca", "Embalagens (caixas, tags, sacolas)", "Menu impresso", "Posts para Instagram"],
+    results: "Marca unificada em todos os pontos de contato, do físico ao digital.",
+    gallery: [],
+    pdf: null,
   },
   {
     id: "identidade-visual-pe-angular",
@@ -34,7 +53,13 @@ export const projects: Project[] = [
     year: "2024",
     tools: "Ai / Ps / Figma",
     cover: "/images/projects/identidade_visual_pe-angular.png",
-    href: "#",
+    description: "Identidade visual para estúdio de arquitetura e design de interiores. Conceito baseado na geometria e na relação forma-função, com sistema modular de elementos gráficos que se adaptam a diferentes escalas — do cartão de visita à sinalização de obra.",
+    client: "Pé Angular Arquitetura",
+    role: ["Branding", "Design de logótipo", "Sistema visual", "Sinalética"],
+    deliverables: ["Logótipo modular", "Manual de identidade", "Papelaria completa", "Sinalética de obra", "Templates de apresentação", "Website (UI)"],
+    results: "Sistema gráfico coerente aplicado em materiais impressos, digitais e ambientais.",
+    gallery: [],
+    pdf: null,
   },
   {
     id: "logo-docinhos-ceu",
@@ -43,7 +68,13 @@ export const projects: Project[] = [
     year: "2025",
     tools: "Ai / Ps",
     cover: "/images/projects/logo_docinhos_ceu.png",
-    href: "#",
+    description: "Redesenho do logótipo da confeitaria Docinhos do Céu, refinando a tipografia manuscrita e ajustando a ilustração do anjo para melhor legibilidade em pequenos tamanhos e aplicações em relevo nas embalagens.",
+    client: "Docinhos do Céu",
+    role: ["Design de logótipo", "Refinamento de marca"],
+    deliverables: ["Logótipo principal", "Variações (horizontal, vertical, isotipo)", "Arquivos vetoriais (AI, SVG, PDF)", "Guia de uso rápido"],
+    results: "Logótipo otimizado para reprodução em diferentes técnicas de impressão.",
+    gallery: [],
+    pdf: null,
   },
   {
     id: "kits-confeites-nicole",
@@ -52,7 +83,13 @@ export const projects: Project[] = [
     year: "2025",
     tools: "Ai / Ps / Id",
     cover: "/images/projects/kits_confeites_nicole.png",
-    href: "#",
+    description: "Design de kits de produtos para a Confeites Nicole, unificando a linguagem visual de caixas, tags, cartões de agradecimento e adesivos. Cada kit conta uma pequena história visual alinhada à sazonalidade (Páscoa, Natal, Dia das Mães).",
+    client: "Confeites Nicole",
+    role: ["Design de embalagem", "Ilustração", "Design gráfico", "Produção gráfica"],
+    deliverables: ["Caixas personalizadas (3 tamanhos)", "Tags de produto", "Cartões de agradecimento", "Adesivos de fecho", "Sacolas", "Arquivos prontos para impressão"],
+    results: "Kits sazonais padronizados, prontos para produção gráfica recorrente.",
+    gallery: [],
+    pdf: null,
   },
   {
     id: "manual-receitas-confeites-nicole",
@@ -61,7 +98,13 @@ export const projects: Project[] = [
     year: "2024",
     tools: "Id / Ps / Ai",
     cover: "/images/projects/manual_receitas_confeites_cnicole.png",
-    href: "#",
+    description: "Diagramação e design editorial de manual de receitas artesanais, com fotografia de produto, tipografia legível para cozinha e organização por categorias. Impresso em papel offset com encadernação espiral para uso prático.",
+    client: "Confeites Nicole",
+    role: ["Design editorial", "Diagramação", "Tratamento de imagem", "Preparação para impressão"],
+    deliverables: ["Manual impresso (A5, 60 pág.)", "Arquivo PDF para reimpressão", "Capa dura personalizada", "Índice e fichas técnicas"],
+    results: "Material de apoio à venda e fidelização de clientes, com qualidade editorial.",
+    gallery: [],
+    pdf: null,
   },
   {
     id: "menu-ateliê-delicias",
@@ -70,7 +113,13 @@ export const projects: Project[] = [
     year: "2024",
     tools: "Id / Ps / Ai",
     cover: "/images/projects/menu_atelier_delicias.png",
-    href: "#",
+    description: "Design de cardápio para confeitaria/café, com hierarquia visual clara entre categorias (doces, salgados, bebidas), fotografias dos produtos e acabamento em laminação fosca para resistência ao manuseio diário.",
+    client: "Ateliê Delícias",
+    role: ["Design editorial", "Design de menu", "Tratamento de imagem", "Produção gráfica"],
+    deliverables: ["Menu impresso (A4, dobrado)", "Versão digital para tablet/QR code", "Arquivos fonte", "Especificações de impressão"],
+    results: "Cardápio funcional e esteticamente alinhado à identidade do estabelecimento.",
+    gallery: [],
+    pdf: null,
   },
   {
     id: "menu-confeites-nicole",
@@ -79,7 +128,13 @@ export const projects: Project[] = [
     year: "2025",
     tools: "Id / Ps / Ai",
     cover: "/images/projects/menu_confeites_nicole.png",
-    href: "#",
+    description: "Atualização sazonal do cardápio da Confeites Nicole, mantendo a identidade visual existente e reorganizando a hierarquia de produtos para destacar lançamentos. Versão impressa e digital sincronizadas.",
+    client: "Confeites Nicole",
+    role: ["Design editorial", "Design de menu", "Atualização de identidade"],
+    deliverables: ["Menu impresso (A4)", "Versão digital (PDF/imagem)", "Arquivos editáveis"],
+    results: "Cardápio atualizado com destaque para novos produtos sazonais.",
+    gallery: [],
+    pdf: null,
   },
   {
     id: "menu-hamburgueria-cantinho-peniel",
@@ -88,7 +143,13 @@ export const projects: Project[] = [
     year: "2024",
     tools: "Id / Ps / Ai",
     cover: "/images/projects/menu_hamburgueria_cantinho_peniel.png",
-    href: "#",
+    description: "Criação de cardápio para hamburgueria artesanal, com layout em grade para combos, ícones de alergênicos, fotografias dos hambúrgueres e acabamento resistente a gordura e umidade.",
+    client: "Hamburgueria Cantinho Peniel",
+    role: ["Design editorial", "Design de menu", "Iconografia", "Produção gráfica"],
+    deliverables: ["Menu impresso (A3, laminação)", "Versão digital para totem/QR", "Ícones de alergênicos", "Arquivos para reimpressão"],
+    results: "Cardápio durável e de fácil leitura, alinhado ao posicionamento artesanal.",
+    gallery: [],
+    pdf: null,
   },
   {
     id: "proposta-comercial-atlascorp",
@@ -97,7 +158,13 @@ export const projects: Project[] = [
     year: "2025",
     tools: "Id / Ps / Ai / Figma",
     cover: "/images/projects/proposta_comercial_atlascorp.png",
-    href: "#",
+    description: "Template de proposta comercial para a AtlasCorp, estruturado em módulos reutilizáveis (apresentação, portfólio, metodologia, investimento, cronograma). Design profissional com tipografia sistêmica e gráficos editáveis no Figma.",
+    client: "AtlasCorp (próprio)",
+    role: ["Design editorial", "UI Design", "Design de apresentação", "Sistemas visuais"],
+    deliverables: ["Template no Figma (editável)", "Versão PDF para envio direto", "Biblioteca de componentes", "Guia de uso da equipe"],
+    results: "Padronização das propostas comerciais, redução de tempo de preparação.",
+    gallery: [],
+    pdf: "/pdfs/carrossel_API.pdf",
   },
   {
     id: "ebook-docinhos",
@@ -106,7 +173,13 @@ export const projects: Project[] = [
     year: "2025",
     tools: "Id / Ps / Ai",
     cover: "/images/projects/ebook_docinhos.png",
-    href: "#",
+    description: "Design de e-book de receitas para a Docinhos do Céu, com layout responsivo para leitura em mobile/desktop, fotografia de passo a passo, tipografia otimizada para tela e elementos interativos (links, índice clicável).",
+    client: "Docinhos do Céu",
+    role: ["Design editorial", "UI Design", "Tratamento de imagem", "Produção digital"],
+    deliverables: ["E-book (PDF interativo)", "Capa para redes sociais", "Arquivos fonte (InDesign)", "Versão otimizada para web"],
+    results: "Material digital para captação de leads e engajamento da audiência.",
+    gallery: [],
+    pdf: null,
   },
   {
     id: "api-atlas-dev",
@@ -115,6 +188,12 @@ export const projects: Project[] = [
     year: "2025",
     tools: "Ai / Ps / Figma",
     cover: "/images/projects/capa_carrossel_api_atlas_dev.png",
-    href: "#",
+    description: "Série de carrosséis educativos para Instagram/LinkedIn explicando conceitos de APIs REST, boas práticas de versionamento e autenticação. Linguagem visual técnica mas acessível, com diagramas simplificados e tipografia de código.",
+    client: "Atlas Dev (próprio)",
+    role: ["Design editorial", "Ilustração técnica", "Motion design", "Social media design"],
+    deliverables: ["10 posts em carrossel (Instagram/LinkedIn)", "Arquivos fonte (Figma/Ai)", "Versões estáticas (PNG)", "Guia de postagem"],
+    results: "Conteúdo educativo publicado organicamente, gerando engajamento técnico.",
+    gallery: [],
+    pdf: null,
   },
 ];

@@ -1,20 +1,39 @@
 "use client";
 
+import * as React from "react";
 import { CoverflowCarousel, type CoverflowSlide } from "@/components/ui/coverflow-carousel";
 import { projects } from "@/data/projects";
+import { ProjectDialog } from "./project-dialog";
 
 export function ProjectsCoverflowSection() {
+  const [openIndex, setOpenIndex] = React.useState<number | null>(null);
+
   const slides: CoverflowSlide[] = projects.map((p) => ({
     src: p.cover,
     alt: `Capa do projeto ${p.title}`,
     title: p.title,
     subtitle: p.subtitle,
-    href: p.href,
     meta: [
       { label: "Ano", value: p.year },
       { label: "Ferramentas", value: p.tools },
     ],
   }));
+
+  const handleOpenProject = (index: number) => {
+    setOpenIndex(index);
+  };
+
+  const handlePrev = () => {
+    setOpenIndex((i) => (i === null ? null : (i - 1 + projects.length) % projects.length));
+  };
+
+  const handleNext = () => {
+    setOpenIndex((i) => (i === null ? null : (i + 1) % projects.length));
+  };
+
+  const handleClose = (open: boolean) => {
+    if (!open) setOpenIndex(null);
+  };
 
   return (
     <section id="projetos" className="relative w-full overflow-x-clip bg-background py-16 sm:py-24">
@@ -28,10 +47,18 @@ export function ProjectsCoverflowSection() {
         <CoverflowCarousel
           slides={slides}
           showCaption
-          autoPlay
+          autoPlay={openIndex === null}
           autoPlayInterval={5000}
           label="Carrossel de projetos"
           ctaLabel="Ver projeto"
+          onOpenProject={handleOpenProject}
+        />
+        <ProjectDialog
+          open={openIndex !== null}
+          onOpenChange={handleClose}
+          project={openIndex !== null ? projects[openIndex] : null}
+          onPrev={handlePrev}
+          onNext={handleNext}
         />
       </div>
     </section>
