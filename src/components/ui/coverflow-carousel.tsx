@@ -349,6 +349,7 @@ export function CoverflowCarousel({
                     {onOpenProject ? (
                       <button
                         type="button"
+                        onPointerDown={(e) => e.stopPropagation()}
                         onClick={(event) => {
                           if (suppressClickRef.current) return;
                           onOpenProject(index);
@@ -360,6 +361,7 @@ export function CoverflowCarousel({
                     ) : (
                       <a
                         href={slide.href!}
+                        onPointerDown={(e) => e.stopPropagation()}
                         onClick={(event) => {
                           if (suppressClickRef.current) {
                             event.preventDefault();
