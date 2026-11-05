@@ -410,6 +410,10 @@ function Styles() {
         opacity: 0;
         transform: translateY(24px);
         transition: opacity .7s ease, transform .7s ease;
+        display: flex;
+        justify-content: center;
+        background: black;
+        padding-bottom: 4rem;
       }
       .icsa-cs.on .icsa-inner {
         opacity: 1;
